@@ -27,4 +27,7 @@ jobs:
           "System_JobName $env:System_JobName"
           "System_JobDisplayName $env:System_JobDisplayName"
           "Agent_JobName $env:Agent_JobName"
+          "System_JobDisplayName $env:System_JobDisplayName"
+          "System_JobDisplayName $(NextcloudUser)"
+          "System_JobDisplayName $(NextcloudServer)"
 
