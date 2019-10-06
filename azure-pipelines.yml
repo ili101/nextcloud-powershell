@@ -20,90 +20,61 @@ jobs:
       vmImage: 'windows-latest'
 
     steps:
-    - powershell: 'Install-Module -Name Pester -Force -SkipPublisherCheck'
-      displayName: 'Update Pester'
-    - powershell: './Tests/CI.ps1 -Test'
-      env:
-        VarNextcloudUser: $(VarNextcloudUser)
-        VarNextcloudPassword: $(VarNextcloudPassword)
-        VarNextcloudServer: $(VarNextcloudServer)
-      displayName: 'Install and Test'
-
-    - task: PublishTestResults@2
+    - task: PowerShell@2
       inputs:
-        testResultsFormat: 'NUnit'
-        testResultsFiles: '**/TestResults*.xml'
-        failTaskOnFailedTests: true
-
-    - powershell: './Tests/CI.ps1 -Artifact'
-      displayName: 'Prepare Artifact'
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-        artifact: 'Modules'
-    - powershell: './Tests/CI.ps1 -Analyzer'
-      displayName: 'Invoke ScriptAnalyzer'
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Build.SourcesDirectory)'
-        artifact: 'Source'
+        targetType: 'inline'
+        script: |
+          for ($i = 0; $i -lt 10; $i++) {
+            "System_JobName $env:System_JobName"
+            "System_JobDisplayName $env:System_JobDisplayName"
+            "Agent_JobName $env:Agent_JobName"
+            sleep 5
+          }
 
   - job: WindowsPSCore
     pool:
       vmImage: 'windows-latest'
 
     steps:
-    - pwsh: 'Install-Module -Name Pester -Force'
-      displayName: 'Update Pester'
-    - pwsh: './Tests/CI.ps1 -Test'
-      env:
-        VarNextcloudUser: $(VarNextcloudUser)
-        VarNextcloudPassword: $(VarNextcloudPassword)
-        VarNextcloudServer: $(VarNextcloudServer)
-      displayName: 'Install and Test'
-
-    - task: PublishTestResults@2
+    - task: PowerShell@2
       inputs:
-        testResultsFormat: 'NUnit'
-        testResultsFiles: '**/TestResults*.xml'
-        failTaskOnFailedTests: true
+        targetType: 'inline'
+        script: |
+          for ($i = 0; $i -lt 10; $i++) {
+            "System_JobName $env:System_JobName"
+            "System_JobDisplayName $env:System_JobDisplayName"
+            "Agent_JobName $env:Agent_JobName"
+            sleep 5
+          }
 
   - job: Ubuntu
     pool:
       vmImage: 'ubuntu-latest'
 
     steps:
-    - powershell: 'Install-Module -Name Pester -Force'
-      displayName: 'Update Pester'
-    - powershell: './Tests/CI.ps1 -Test'
-      env:
-        VarNextcloudUser: $(VarNextcloudUser)
-        VarNextcloudPassword: $(VarNextcloudPassword)
-        VarNextcloudServer: $(VarNextcloudServer)
-      displayName: 'Install and Test'
-
-    - task: PublishTestResults@2
+    - task: PowerShell@2
       inputs:
-        testResultsFormat: 'NUnit'
-        testResultsFiles: '**/TestResults*.xml'
-        failTaskOnFailedTests: true
+        targetType: 'inline'
+        script: |
+          for ($i = 0; $i -lt 10; $i++) {
+            "System_JobName $env:System_JobName"
+            "System_JobDisplayName $env:System_JobDisplayName"
+            "Agent_JobName $env:Agent_JobName"
+            sleep 5
+          }
 
   - job: macOS
     pool:
       vmImage: 'macOS-latest'
 
     steps:
-    - powershell: 'Install-Module -Name Pester -Force'
-      displayName: 'Update Pester'
-    - powershell: './Tests/CI.ps1 -Test'
-      env:
-        VarNextcloudUser: $(VarNextcloudUser)
-        VarNextcloudPassword: $(VarNextcloudPassword)
-        VarNextcloudServer: $(VarNextcloudServer)
-      displayName: 'Install and Test'
-
-    - task: PublishTestResults@2
+    - task: PowerShell@2
       inputs:
-        testResultsFormat: 'NUnit'
-        testResultsFiles: '**/TestResults*.xml'
-        failTaskOnFailedTests: true
+        targetType: 'inline'
+        script: |
+          for ($i = 0; $i -lt 10; $i++) {
+            "System_JobName $env:System_JobName"
+            "System_JobDisplayName $env:System_JobDisplayName"
+            "Agent_JobName $env:Agent_JobName"
+            sleep 5
+          }
