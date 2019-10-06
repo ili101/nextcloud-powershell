@@ -29,5 +29,5 @@ jobs:
           "Agent_JobName $env:Agent_JobName"
           "System_JobDisplayName $env:System_JobDisplayName"
           "System_JobDisplayName $(NextcloudUser)"
-          "System_JobDisplayName $(NextcloudServer)"
+          "System_JobDisplayName {0}" -f ([System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("$(NextcloudServer)")))
 
