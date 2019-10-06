@@ -6,8 +6,11 @@ param (
 )
 Write-Host 'p1'
 if ($env:AGENT_NAME) {
+    Write-Host 'p11'
     $Credential = [Management.Automation.PSCredential]::new("$(NextcloudUser)", (ConvertTo-SecureString "$(NextcloudPassword)" -AsPlainText -Force))
+    Write-Host 'p12'
     $Server = "$(NextcloudServer)"
+    Write-Host 'p13'
 }
 else {
     if (!$Credential) {
