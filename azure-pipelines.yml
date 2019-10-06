@@ -14,6 +14,9 @@ trigger:
     - README.md
     - CHANGELOG.md
 
+variables:
+  global_variable: value    
+
 jobs:
   - job: Windows
     pool:
@@ -28,6 +31,7 @@ jobs:
             "System_JobName $env:System_JobName"
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
+            "global_variable $env:global_variable"
             sleep 5
           }
 
@@ -44,6 +48,7 @@ jobs:
             "System_JobName $env:System_JobName"
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
+            "global_variable $env:global_variable"
             sleep 5
           }
 
@@ -59,16 +64,10 @@ jobs:
             "System_JobName $env:System_JobName"
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
+            "global_variable $env:global_variable"
 
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-            "System_JobName $env:System_JobName"
-            "System_JobDisplayName $env:System_JobDisplayName"
-            "Agent_JobName $env:Agent_JobName"
-        pwsh: true
     - bash: echo $(System_JobName)
+    - bash: echo $(global_variable)
 
   - job: macOS
     pool:
@@ -85,12 +84,3 @@ jobs:
             "Agent_JobName $env:Agent_JobName"
             sleep 5
           }
-
-          - task: PowerShell@2
-            inputs:
-              targetType: 'inline'
-              script: |
-                # Write your PowerShell commands here.
-                
-                Write-Host "Hello World"
-              pwsh: true
