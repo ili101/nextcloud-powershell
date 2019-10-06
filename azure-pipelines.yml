@@ -56,12 +56,19 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          for ($i = 0; $i -lt 10; $i++) {
             "System_JobName $env:System_JobName"
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
-            sleep 5
-          }
+
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+            "System_JobName $env:System_JobName"
+            "System_JobDisplayName $env:System_JobDisplayName"
+            "Agent_JobName $env:Agent_JobName"
+        pwsh: true
+    - bash: echo $(System_JobName)
 
   - job: macOS
     pool:
@@ -78,3 +85,12 @@ jobs:
             "Agent_JobName $env:Agent_JobName"
             sleep 5
           }
+
+          - task: PowerShell@2
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Write your PowerShell commands here.
+                
+                Write-Host "Hello World"
+              pwsh: true
