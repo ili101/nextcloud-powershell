@@ -4,6 +4,7 @@ param (
     [PSCredential]$Credential = $NextcloudCredential,
     [string]$Server = $NextcloudServer
 )
+$Global:VerbosePreference = 'Continue'
 if ($env:AGENT_NAME) {
     $Credential = [Management.Automation.PSCredential]::new($env:VarNextcloudUser, (ConvertTo-SecureString $env:VarNextcloudPassword -AsPlainText -Force))
     $Server = $env:VarNextcloudServer
