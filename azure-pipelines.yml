@@ -44,13 +44,13 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          for ($i = 0; $i -lt 10; $i++) {
+
             "System_JobName $env:System_JobName"
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
             "global_variable $env:global_variable"
-            sleep 5
-          }
+            gci env:
+
 
   - job: Ubuntu
     pool:
@@ -65,8 +65,10 @@ jobs:
             "System_JobDisplayName $env:System_JobDisplayName"
             "Agent_JobName $env:Agent_JobName"
             "global_variable $env:global_variable"
+            gci env:
 
     - bash: echo $(System_JobName)
+    - bash: echo $(System.JobName)
     - bash: echo $(global_variable)
 
   - job: macOS
